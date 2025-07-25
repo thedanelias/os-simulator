@@ -19,7 +19,20 @@ void destroyNode(nodeT* node){
   free(node);
 }
 
-LinkedListT* create_LinkedList() {}
+LinkedListT* create_LinkedList() {
+  // create list
+  LinkedListT* list = (LinkedListT*)malloc(sizeof(LinkedListT));
+  assert(list);
+
+  // create sentinel node - set to -1 as that value can't be used
+  nodeT* newNode = createNode(-1);
+  newNode->next = newNode;
+  newNode->prev = newNode;
+  assert(newNode);
+  list->head = newNode;
+  list->tail = newNode;
+  return list;
+}
 void destroy_LinkedList(LinkedListT* list) {}
 void prepend_LinkedList(LinkedListT* list, int data) {}
 void append_LinkedList(LinkedListT* list, int data) {}
