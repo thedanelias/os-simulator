@@ -5,26 +5,26 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <assert.h>
+
 typedef struct node {
   int data;
   struct node *next;
   struct node *prev;
 } nodeT;
 
-typedef struct linkedList {
+typedef struct LinkedList {
   nodeT* head;
   nodeT* tail;
-} linkedListT;
+} LinkedListT;
 
-linkedListT* create_linkedList();
-void destroy_linkedList(linkedListT*);
-void prepend_linkedList(linkedListT*, int);
-void append_linkedList(linkedListT*, int);
-void pop_front_linkedList(linkedListT*);
-void pop_back_linkedList(linkedListT*);
-int get_element_from_front_linkedList(linkedListT*, int);
-int get_element_from_back_linkedList(linkedListT*, int);
-int get_length_linkedList(linkedListT* list);
+LinkedListT* create_LinkedList();
+void destroy_LinkedList(LinkedListT* list);
+void prepend_LinkedList(LinkedListT* list, int data);
+void append_LinkedList(LinkedListT* list, int data);
+int pop_front_LinkedList(LinkedListT* list);
+int pop_back_LinkedList(LinkedListT* list);
+int get_length_LinkedList(LinkedListT* list);
 
 
 #endif //LINKED_LIST_H
