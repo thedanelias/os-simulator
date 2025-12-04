@@ -8,7 +8,7 @@
 #include <assert.h>
 
 typedef struct node {
-  int data;
+  void* data;
   struct node *next;
   struct node *prev;
 } nodeT;
@@ -16,14 +16,15 @@ typedef struct node {
 typedef struct LinkedList {
   nodeT* head;
   nodeT* tail;
+  int length;
 } LinkedListT;
 
 LinkedListT* create_LinkedList();
 void destroy_LinkedList(LinkedListT* list);
-void prepend_LinkedList(LinkedListT* list, int data);
-void append_LinkedList(LinkedListT* list, int data);
-int pop_front_LinkedList(LinkedListT* list);
-int pop_back_LinkedList(LinkedListT* list);
+void prepend_LinkedList(LinkedListT* list, void* data);
+void append_LinkedList(LinkedListT* list, void* data);
+void* pop_front_LinkedList(LinkedListT* list);
+void* pop_back_LinkedList(LinkedListT* list);
 int get_length_LinkedList(LinkedListT* list);
 
 
