@@ -12,12 +12,12 @@ typedef struct NonBlockingQueue {
     pthread_mutex_t NonBlockingMutex;
 } NonBlockingQueueT;
 
-void non_blocking_queue_init(NonBlockingQueueT* queue);
-void non_blocking_queue_destroy(NonBlockingQueueT* queue);
-void non_blocking_queue_push(NonBlockingQueueT* queue, void* data);
-void* non_blocking_queue_pop(NonBlockingQueueT* queue);
-int non_blocking_queue_empty(NonBlockingQueueT* queue);
-int non_blocking_queue_length(NonBlockingQueueT* queue);
+void init_NonBlockingQueue(NonBlockingQueueT* queue);
+void destroy_NonBlockingQueue(NonBlockingQueueT* queue);
+void push_NonBlockingQueue(NonBlockingQueueT* queue, void* data);
+void* pop_NonBlockingQueue(NonBlockingQueueT* queue);
+int get_empty_NonBlockingQueue(NonBlockingQueueT* queue);
+int get_length_NonBlockingQueue(NonBlockingQueueT* queue);
 
 
 #endif //NON_BLOCKING_QUEUE_H
