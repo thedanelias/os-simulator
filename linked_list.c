@@ -79,9 +79,8 @@ void append_LinkedList(LinkedListT* list, void* data) {
 void* pop_front_LinkedList(LinkedListT* list) {
     assert(list);
     nodeT* node = list->head->next;
-    void* data = node->data;
+    void* data = list->head->data;
     if (list->length == 1) {
-        destroy_node(list->head);
         list->head = list->tail = NULL;
     } else if (list->length == 2) {
         destroy_node(list->head);
