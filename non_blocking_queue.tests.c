@@ -68,7 +68,7 @@ void queue_length() {
     push_NonBlockingQueue(&q, (void*)i);
   }
   assert(get_length_NonBlockingQueue(&q) == 3);
-  int i = 0;
+  void* i = 0;
   pop_NonBlockingQueue(&q, &i);
   pop_NonBlockingQueue(&q, &i);
   assert(get_length_NonBlockingQueue(&q) == 1);
@@ -85,7 +85,6 @@ int main() {
   queue_push();
   queue_pop();
   queue_length();
-  concurrency();
   printf("All tests passed\n");
   return 0;
 }

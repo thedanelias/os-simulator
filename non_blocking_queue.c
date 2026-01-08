@@ -39,7 +39,10 @@ int pop_NonBlockingQueue(NonBlockingQueueT* queue, void** var) {
 }
 
 int get_empty_NonBlockingQueue(NonBlockingQueueT* queue) {
-  return (get_length_LinkedList(queue->Queue) == 0);
+  pthread_mutex_lock(&(queue->lock));
+  int length = get_length_NonBlockingQueue(queue);
+  pthread_mutex_unlock(&(queue->lock));
+  return length == 0;
 }
 
 int get_length_NonBlockingQueue(NonBlockingQueueT* queue) {
