@@ -15,7 +15,7 @@ typedef struct NonBlockingQueue {
 void init_NonBlockingQueue(NonBlockingQueueT* queue);
 void destroy_NonBlockingQueue(NonBlockingQueueT* queue);
 void push_NonBlockingQueue(NonBlockingQueueT* queue, void* data);
-int pop_NonBlockingQueue(NonBlockingQueueT* queue, void* var);
+int pop_NonBlockingQueue(NonBlockingQueueT* queue, void** var);
 int get_empty_NonBlockingQueue(NonBlockingQueueT* queue);
 int get_length_NonBlockingQueue(NonBlockingQueueT* queue);
 

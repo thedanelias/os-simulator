@@ -25,12 +25,12 @@ void push_NonBlockingQueue(NonBlockingQueueT* queue, void* data) {
   pthread_mutex_unlock(&(queue->lock));
 }
 
-int pop_NonBlockingQueue(NonBlockingQueueT* queue, void* var) {
+int pop_NonBlockingQueue(NonBlockingQueueT* queue, void** var) {
   pthread_mutex_lock(&(queue->lock));
   int length = get_length_NonBlockingQueue(queue);
   int pop = 0;
   if (length > 0) {
-    var = pop_front_LinkedList(queue->Queue);
+    *var = pop_front_LinkedList(queue->Queue);
   } else {
     pop =  1;
   }
