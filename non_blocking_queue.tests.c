@@ -5,6 +5,7 @@
 #include "non_blocking_queue.h"
 #include <stdio.h>
 #include <assert.h>
+#include <unistd.h>
 
 void queue_creation() {
   NonBlockingQueueT q;
@@ -50,8 +51,9 @@ void queue_pop() {
   for (int i = 10; i < 40; i += 10) {
     push_NonBlockingQueue(&q, (void*)i);
   }
-  pop_NonBlockingQueue(&q);
-  pop_NonBlockingQueue(&q);
+  void* x = 0;
+  pop_NonBlockingQueue(&q, &x);
+  pop_NonBlockingQueue(&q, &x);
   assert(q.Queue->head->data == (void*) 30);
   printf("Test passed\n");
   destroy_NonBlockingQueue(&q);
@@ -66,12 +68,16 @@ void queue_length() {
     push_NonBlockingQueue(&q, (void*)i);
   }
   assert(get_length_NonBlockingQueue(&q) == 3);
-  pop_NonBlockingQueue(&q);
-  pop_NonBlockingQueue(&q);
+  int i = 0;
+  pop_NonBlockingQueue(&q, &i);
+  pop_NonBlockingQueue(&q, &i);
   assert(get_length_NonBlockingQueue(&q) == 1);
   printf("Test passed\n");
   destroy_NonBlockingQueue(&q);
 }
+
+// TODO add concurrency tests
+
 
 int main() {
   queue_creation();
@@ -79,6 +85,7 @@ int main() {
   queue_push();
   queue_pop();
   queue_length();
+  concurrency();
   printf("All tests passed\n");
   return 0;
 }
