@@ -45,12 +45,13 @@ void pop() {
   printf("Test pop\n");
   init_BlockingQueue(&q);
   assert(&q);
-  for (int i = 0; i < 10; i++) {
-    push_BlockingQueue(&q, (void*)i);
+  for (int i = 1; i < 10; i++) {
+    push_BlockingQueue(&q, (void*)(intptr_t)i);
   }
   void* a = 0;
-  for (int i = 0; i < 10; i++) {
-    assert(pop_BlockingQueue(&q, a) == (void*)i);
+  for (int i = 1; i < 10; i++) {
+    pop_BlockingQueue(&q, &a);
+    assert((intptr_t)a == i);
   }
   printf("test passed\n");
   destroy_BlockingQueue(&q);
@@ -63,15 +64,17 @@ void queue_length() {
   assert(&q);
   void* a = 0;
   for (int i = 0; i < 10; i++) {
-    push_BlockingQueue(&q, (void*)i);
+    push_BlockingQueue(&q, (void*)(intptr_t)i);
   }
   assert(get_length_BlockingQueue(&q) == 10);
   for (int i = 0; i < 5; i++)
-    pop_BlockingQueue(&q, a);
+    pop_BlockingQueue(&q, &a);
   assert(get_length_BlockingQueue(&q) == 5);
   printf("test passed\n");
   destroy_BlockingQueue(&q);
 }
+
+//TODO add concurrency tests
 
 int main() {
   create();
